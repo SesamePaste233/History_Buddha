@@ -1,0 +1,152 @@
+﻿id,parent_id,category,period,head_body,head,body,head_body_en,TheBuddha(Sidhartha),Bodhisattva,Northern_Wei,Northern_Qi,Sui,Tang,period2,types
+88,88,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+66,66,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+90,90,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+28,28,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+190,190,菩萨,北齐,['头'],True,False,-head,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+96,96,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+24,24,三尊,北魏_东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+120,120,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+79,79,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+63,63,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+114,114,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+82,82,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+75,75,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+10,10,三尊,北魏,['身'],False,True,-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+162,158,菩萨,北齐,['头'],True,False,-head,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+157,157,菩萨,东魏_北齐,['身'],False,True,-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+22,19,菩萨,北魏_东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+18,18,三尊,北魏_东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+84,84,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+73,73,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+104,104,佛,北魏_东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+11,11,三尊,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+7,7,三尊,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+48,48,二佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+68,68,佛,北魏_东魏,['身'],False,True,-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+176,176,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+98,98,佛,唐,['身'],False,True,-body,True,False,False,False,False,True,Tang,TheBuddha(Sidhartha)
+58,58,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+47,45,菩萨,北齐,"['头', '身']",True,True,-head-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+174,174,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+30,30,三尊,东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+108,108,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+9,9,三尊,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+64,64,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+116,116,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+38,37,佛,东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+153,153,菩萨,北魏_东魏,['身'],False,True,-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+42,41,佛,东魏_北齐,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+122,122,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+29,28,菩萨,北魏_东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+61,61,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+189,189,菩萨,北齐,['头'],True,False,-head,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+97,97,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+13,11,菩萨,北魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+166,166,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+169,169,菩萨,北齐,"['头', '身']",True,True,-head-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+185,185,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+78,78,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+99,99,佛,唐,['身'],False,True,-body,True,False,False,False,False,True,Tang,TheBuddha(Sidhartha)
+45,45,三尊,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+89,89,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+103,103,佛,北魏_东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+67,67,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+147,147,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+25,24,佛,北魏_东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+105,105,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+149,149,菩萨,北魏_东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+12,11,佛,北魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+23,23,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+146,146,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+72,72,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+183,183,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+85,85,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+16,14,菩萨,北魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+74,74,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+83,83,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+17,17,三尊,北魏_东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+181,181,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+19,19,三尊,北魏_东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+15,14,佛,北魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+62,62,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+65,65,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+50,50,佛,东魏_北齐,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+59,59,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+179,179,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+46,45,菩萨,北齐,"['头', '身']",True,True,-head-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+39,37,菩萨,东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+43,41,菩萨,东魏_北齐,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+155,155,菩萨,北魏_东魏,['身'],False,True,-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+119,119,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+107,107,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+60,60,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+21,19,菩萨,北魏_东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+151,151,菩萨,北魏_东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+148,148,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+55,55,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+102,102,佛,北魏_东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+80,80,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+180,180,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+70,70,佛,东魏_北齐,['身'],False,True,-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+71,71,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+86,86,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+182,182,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+91,91,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+3,1,菩萨,北魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+121,121,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+27,24,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+186,186,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+26,24,菩萨,北魏_东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+184,184,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+34,33,菩萨,东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+167,167,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+69,69,佛,北魏晚期,['身'],False,True,-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+93,93,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+44,44,三尊,东魏_北齐,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+187,187,菩萨,北齐,['头'],True,False,-head,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+4,1,菩萨,北魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+57,57,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+123,123,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+1,1,三尊,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+150,150,菩萨,北魏_东魏,['头'],True,False,-head,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+14,14,三尊,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+117,117,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+172,172,菩萨,北齐,"['头', '身']",True,True,-head-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+109,109,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+178,178,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+8,7,佛,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+40,37,菩萨,东魏,"['头', '身']",True,True,-head-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+31,31,佛,东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+154,154,菩萨,北魏_东魏,['身'],False,True,-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+52,52,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+87,87,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+94,94,佛,隋,"['头', '身']",True,True,-head-body,True,False,False,False,True,False,Sui,TheBuddha(Sidhartha)
+20,19,佛,北魏_东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+156,156,菩萨,东魏_北齐,['身'],False,True,-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+33,33,三尊,东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+54,54,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+81,81,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+76,76,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+95,95,佛,北齐,['身'],False,True,-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+101,101,佛,北魏_东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+168,168,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+110,110,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+51,51,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+171,171,菩萨,北齐,"['头', '身']",True,True,-head-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+188,188,菩萨,北齐,['头'],True,False,-head,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+112,112,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+56,56,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+152,152,菩萨,北魏_东魏,['身'],False,True,-body,False,True,True,False,False,False,Northern_Wei,Bodhisattva
+173,173,菩萨,北齐,['身'],False,True,-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+170,169,菩萨,北齐,['头'],True,False,-head,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+2,1,佛,北魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+49,49,佛,北魏_东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+92,92,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+41,41,三尊,东魏_北齐,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+106,106,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+53,53,佛,北齐,"['头', '身']",True,True,-head-body,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+118,118,佛,北齐,['头'],True,False,-head,True,False,False,True,False,False,Northern_Qi,TheBuddha(Sidhartha)
+158,158,菩萨,北齐,"['头', '身']",True,True,-head-body,False,True,False,True,False,False,Northern_Qi,Bodhisattva
+37,37,三尊,东魏,"['头', '身']",True,True,-head-body,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
+36,36,佛,东魏,['头'],True,False,-head,True,False,True,False,False,False,Northern_Wei,TheBuddha(Sidhartha)
