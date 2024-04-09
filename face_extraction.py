@@ -19,7 +19,8 @@ def plot_faces(face_objs, original_img_path):
     plt.show()
 
 for i, img_path in enumerate(images_with_head):
-    expand_percentage = 1
+    image = Image.open(img_path)
+    expand_percentage = 0
     try:
         face_objs = DeepFace.extract_faces(img_path, detector_backend='retinaface', enforce_detection=True, expand_percentage=expand_percentage)
     except Exception as e:
@@ -33,6 +34,33 @@ for i, img_path in enumerate(images_with_head):
     # Save faces to folder
     print(f'Extracting faces from {i + 1} image at {img_path}.')
     for i, face in enumerate(face_objs):
-        face_img = face['face']
-        plt.imsave(f'./extracted/faces/{os.path.splitext(os.path.basename(img_path))[0]}_{i}.png', face_img)
-        #img.save(f'./extracted/faces/{os.path.splitext(os.path.basename(img_path))}_{i}.png')
+        facial_area = face['facial_area']
+        x = facial_area['x']
+        y = facial_area['y']
+        w = facial_area['w']
+        h = facial_area['h']
+        area = w * h
+
+        half_w = w // 2
+        half_h = h // 2
+        centroid = (x + half_w, y + half_h)
+        
+        # Crop the face from the image
+        scale = 1.6
+        y_offset_scale = - 0.4
+        
+        threshold = 100 / scale
+        if area < threshold ** 2:
+            print(f'Skipping face {i + 1} from {img_path} due to small area.')
+            continue
+        r = max(half_w, half_h) * scale
+        y_offset = max(half_w, half_h) * y_offset_scale
+        face_image = image.crop((centroid[0] - r, centroid[1] - r + y_offset, centroid[0] + r, centroid[1] + r + y_offset))
+
+        # Resize the face image
+        face_image = face_image.resize((224, 224))
+
+        # Save the face image
+        face_image.save(f'./extracted/faces/{os.path.splitext(os.path.basename(img_path))[0]}_{i}.png')
+
+        #plt.imsave(f'./extracted/faces/{os.path.splitext(os.path.basename(img_path))[0]}_{i}.png', face_image)

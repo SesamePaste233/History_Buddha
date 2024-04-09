@@ -1,5 +1,7 @@
 import dlib
 import os
+import matplotlib.pyplot as plt
+import PIL.Image as Image
 
 face_image_folder = './extracted/faces'
 
@@ -39,8 +41,9 @@ for img_path in image_paths[:10]:
         for i in range(68):
             x = shape.part(i).x
             y = shape.part(i).y
-            dlib.draw_circle(img, x, y, 1, dlib.rgb_pixel(255, 0, 0))
-
-        dlib.save_image(img, f'{os.path.splitext(img_path)[0]}_landmarks.png')
+            plt.plot(x, y, 'ro')
+        
+        plt.imshow(img)
+        plt.show()
 
         print(f'Landmarks saved for {img_path}.')
