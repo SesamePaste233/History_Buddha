@@ -20,13 +20,13 @@ def plot_faces(face_objs, original_img_path):
 
 for i, img_path in enumerate(images_with_head):
     image = Image.open(img_path)
-    expand_percentage = 100
+    expand_percentage = 50
     try:
-        face_objs = DeepFace.extract_faces(img_path, detector_backend='retinaface', enforce_detection=True, expand_percentage=expand_percentage)
+        face_objs = DeepFace.extract_faces(img_path, target_size=(384, 384), detector_backend='retinaface', enforce_detection=True, expand_percentage=expand_percentage)
     except Exception as e:
         print(f'Switching to mtcnn for {i + 1} image at {img_path}.')
         try:
-            face_objs = DeepFace.extract_faces(img_path, detector_backend='yunet', enforce_detection=True, expand_percentage=expand_percentage)
+            face_objs = DeepFace.extract_faces(img_path, target_size=(384, 384), detector_backend='yunet', enforce_detection=True, expand_percentage=expand_percentage)
         except Exception as e:
             print(f'Failed to extract faces from {i + 1} image at {img_path}.')
             continue

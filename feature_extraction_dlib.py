@@ -8,7 +8,7 @@ import json
 
 from check_files import LoadAllFiles, Dataset
 
-face_image_folder = './extracted/faces'
+face_image_folder = './extracted/orthogonalized'
 
 image_paths = [os.path.join(face_image_folder, f) for f in os.listdir(face_image_folder) if os.path.isfile(os.path.join(face_image_folder, f))]
 
@@ -115,7 +115,11 @@ def iterate(img, transform = np.eye(3)):
 
 # Load the image
 for img_path in image_paths:
-    file_name = os.path.splitext(os.path.basename(img_path))[0]
+    file_name: str = os.path.splitext(os.path.basename(img_path))[0]
+
+    # Remove suffix '_ortho' if it exists
+    if file_name.endswith('_ortho'):
+        file_name = file_name[:-6]
 
     img = dlib.load_rgb_image(img_path)
 
@@ -124,7 +128,7 @@ for img_path in image_paths:
     # Iterate through the image
     transform = np.eye(3)
 
-    warped_img = None
+    warped_img = img
 
     shapes = single_detection(img, predictor_68)
     if len(shapes) == 0:
@@ -133,9 +137,13 @@ for img_path in image_paths:
 
     # Get face chip
     shape = shapes[0]
-    face_chip = dlib.get_face_chip(img, shape, size=256, padding = 0.5)
+    #face_chip = dlib.get_face_chip(img, shape, size=256, padding = 0.5)
 
-    warped_img = face_chip
+    #warped_img = face_chip
+
+    warped_landmarks = shape2landmarks(shape)
+
+    #show_landmarks_np(warped_img, warped_landmarks)
 
     
     '''
@@ -157,22 +165,8 @@ for img_path in image_paths:
 
         # Save orthogonalized image
         #cv2.imwrite(os.path.join(orthogonalized_folder, f'{file_name}_ortho.png'), warped_img)
-        # Save with plt is also possible
-        plt.imsave(os.path.join(orthogonalized_folder, f'{file_name}_ortho.png'), warped_img)
-
-        # Read the orthogonalized image
-        read_img = dlib.load_rgb_image(os.path.join(orthogonalized_folder, f'{file_name}_ortho.png'))
-        shapes = single_detection(read_img, predictor_68)
-        if len(shapes) == 0:
-            print(f'No face detected for {img_path}.')
-            continue
-
-        shape = shapes[0]
-
-        warped_landmarks = shape2landmarks(shape)
-
-
-        show_landmarks_np(read_img, warped_landmarks)
+        # Save wit#h plt is also possible
+        #plt.imsave(os.path.join(orthogonalized_folder, f'{file_name}_ortho.png'), warped_img)
 
         # Save orthogonalized landmarks
         #np.save(os.path.join(orthogonalized_landmarks_folder, f'{file_name}_orthomarks.npy'), warped_landmarks)
