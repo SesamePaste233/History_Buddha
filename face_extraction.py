@@ -20,13 +20,13 @@ def plot_faces(face_objs, original_img_path):
 
 for i, img_path in enumerate(images_with_head):
     image = Image.open(img_path)
-    expand_percentage = 0
+    expand_percentage = 100
     try:
         face_objs = DeepFace.extract_faces(img_path, detector_backend='retinaface', enforce_detection=True, expand_percentage=expand_percentage)
     except Exception as e:
         print(f'Switching to mtcnn for {i + 1} image at {img_path}.')
         try:
-            face_objs = DeepFace.extract_faces(img_path, detector_backend='mtcnn', enforce_detection=True, expand_percentage=expand_percentage)
+            face_objs = DeepFace.extract_faces(img_path, detector_backend='yunet', enforce_detection=True, expand_percentage=expand_percentage)
         except Exception as e:
             print(f'Failed to extract faces from {i + 1} image at {img_path}.')
             continue
@@ -46,8 +46,8 @@ for i, img_path in enumerate(images_with_head):
         centroid = (x + half_w, y + half_h)
         
         # Crop the face from the image
-        scale = 1.6
-        y_offset_scale = - 0.4
+        scale = 2
+        y_offset_scale = - 0.5
         
         threshold = 100 / scale
         if area < threshold ** 2:
@@ -58,9 +58,9 @@ for i, img_path in enumerate(images_with_head):
         face_image = image.crop((centroid[0] - r, centroid[1] - r + y_offset, centroid[0] + r, centroid[1] + r + y_offset))
 
         # Resize the face image
-        face_image = face_image.resize((224, 224))
+        face_image = face_image.resize((512, 512))
 
         # Save the face image
         face_image.save(f'./extracted/faces/{os.path.splitext(os.path.basename(img_path))[0]}_{i}.png')
 
-        #plt.imsave(f'./extracted/faces/{os.path.splitext(os.path.basename(img_path))[0]}_{i}.png', face_image)
+        plt.imsave(f'./extracted/orthogonalized/{os.path.splitext(os.path.basename(img_path))[0]}_{i}_ortho.png', face['face'])
