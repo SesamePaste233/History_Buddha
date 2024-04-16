@@ -59,46 +59,46 @@ app.layout = html.Div([
         style={'height': '90vh', 'width': '100%'}
     ),
     html.Button("Save Landmarks", id="save-button"),
+    html.Div(id='debug-info'),
     dcc.Download(id="download-landmarks"),
     dcc.Store(id='landmarks-store', data=all_ldmk_data[idx]),
     dcc.Store(id='selected-landmark-index', data=None)
 ])
 
 @app.callback(
-    Output('image-graph', 'figure'),
-    [Input('image-graph', 'clickData'), State('landmarks-store', 'data'), State('selected-landmark-index', 'data')],
-    [State('image-graph', 'figure')]
+    Output('debug-info', 'children'),
+    [Input('selected-landmark-index', 'data')]
+)
+def update_debug_info(selected_index):
+    return f"Selected Landmark Index: {selected_index}"
+
+@app.callback(
+    [Output('image-graph', 'figure'), Output('selected-landmark-index', 'data')],
+    [Input('image-graph', 'clickData')],
+    [State('landmarks-store', 'data'), State('selected-landmark-index', 'data'), State('image-graph', 'figure')]
 )
 def update_landmarks(clickData, landmarks, selected_index, fig):
     if clickData:
+
+        curve_idx = clickData['points'][0]['curveNumber']
+        data_type = fig['data'][curve_idx]['type']
+
         x, y = clickData['points'][0]['x'], clickData['points'][0]['y']
-        if selected_index is None:
-            # Calculate distances to find the closest landmark
-            distances = [(x - px) ** 2 + (y - py) ** 2 for px, py in landmarks]
-            closest_idx = np.argmin(distances)
-            landmarks[closest_idx] = (x, y)
-            # Update the entire list of x and y coordinates
+        distances = [(x - px) ** 2 + (y - py) ** 2 for px, py in landmarks]
+        closest_idx = np.argmin(distances)
+
+        if data_type == 'scatter':
             fig['data'][1]['x'] = [p[0] for p in landmarks]
             fig['data'][1]['y'] = [p[1] for p in landmarks]
-            return fig
+            selected_index = closest_idx
         else:
-            # Update only the selected landmark's coordinates
             landmarks[selected_index] = (x, y)
             fig['data'][1]['x'] = [p[0] for p in landmarks]
             fig['data'][1]['y'] = [p[1] for p in landmarks]
-            return fig
-    return dash.no_update
-
-@app.callback(
-    Output('selected-landmark-index', 'data'),
-    [Input('image-graph', 'clickData'), State('landmarks-store', 'data')]
-)
-def update_selected_index(clickData, landmarks):
-    if clickData:
-        x, y = clickData['points'][0]['x'], clickData['points'][0]['y']
-        distances = [(x - px) ** 2 + (y - py) ** 2 for px, py in landmarks]
-        return np.argmin(distances)
-    return dash.no_update
+            selected_index = None
+        print(selected_index, (x, y))
+        return fig, selected_index
+    return dash.no_update, dash.no_update
 
 @app.callback(
     Output('landmarks-store', 'data'),
