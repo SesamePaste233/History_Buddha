@@ -14,7 +14,7 @@ app = dash.Dash(__name__)
 all_ldmk_data = {}
 all_images = {}
 
-for file_path in glob.glob('extracted/ortho_landmarks/*.json'):
+for file_path in glob.glob(f'extracted/ortho_landmarks/*.json'):
     file_name = os.path.basename(file_path)
     key1 = "-".join(file_name.split("-")[:2])
     key2 = file_name.split("-")[-1].split("_")[1]
@@ -24,7 +24,7 @@ for file_path in glob.glob('extracted/ortho_landmarks/*.json'):
     with open(file_path, 'r') as json_file:
         all_ldmk_data[key] = json.load(json_file)
 
-for file_path in glob.glob('extracted/orthogonalized/*.png'):
+for file_path in glob.glob(f'extracted/orthogonalized/*.png'):
     file_name = os.path.basename(file_path)
     key1 = "-".join(file_name.split("-")[:2])
     key2 = file_name.split("-")[-1].split("_")[1]
