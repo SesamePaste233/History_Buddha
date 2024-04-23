@@ -160,7 +160,7 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
                 fig['data'][1]['x'] = [p[0] for p in landmarks]
                 fig['data'][1]['y'] = [p[1] for p in landmarks]
                 selected_index = None
-            print(selected_index, (x, y))
+            # print(selected_index, (x, y))
             return fig, landmarks, selected_index
         raise PreventUpdate
 
