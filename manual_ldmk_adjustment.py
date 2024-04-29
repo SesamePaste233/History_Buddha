@@ -143,26 +143,19 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
             raise PreventUpdate
 
     elif trigger_id == 'image-graph' and clickData:
-        if clickData:
-            curve_idx = clickData['points'][0]['curveNumber']
-            data_type = fig['data'][curve_idx]['type']
+        point_data = clickData['points'][0]
+        curve_idx = point_data['curveNumber']
+        x, y = point_data['x'], point_data['y']
 
-            x, y = clickData['points'][0]['x'], clickData['points'][0]['y']
-            distances = [(x - px) ** 2 + (y - py) ** 2 for px, py in landmarks]
-            closest_idx = np.argmin(distances)
-
-            if data_type == 'scatter':
-                fig['data'][1]['x'] = [p[0] for p in landmarks]
-                fig['data'][1]['y'] = [p[1] for p in landmarks]
-                selected_index = closest_idx
-            else:
+        if curve_idx > 0:
+            selected_index = int(point_data['text'])
+        else:
+            if selected_index:
                 landmarks[selected_index] = (x, y)
                 fig['data'][1]['x'] = [p[0] for p in landmarks]
                 fig['data'][1]['y'] = [p[1] for p in landmarks]
-                selected_index = None
-            # print(selected_index, (x, y))
-            return fig, landmarks, selected_index
-        raise PreventUpdate
+            selected_index = None
+        return fig, landmarks, selected_index
 
     raise PreventUpdate
 
