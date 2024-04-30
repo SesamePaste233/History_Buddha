@@ -22,9 +22,6 @@ if not os.path.exists(orthogonalized_folder):
 if not os.path.exists(orthogonalized_landmarks_folder):
     os.makedirs(orthogonalized_landmarks_folder)
 
-
-# Extract feature points from the face
-
 # Load the detector
 detector = dlib.get_frontal_face_detector()
 

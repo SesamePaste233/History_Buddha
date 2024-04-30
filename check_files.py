@@ -1,5 +1,20 @@
 import os
 
+class NameParser:
+    def __init__(self, filename):
+        self.parse(filename)
+        pass
+
+    def parse(self, filename_raw):
+        filename = str(os.path.splitext(filename_raw)[0])
+        items = filename.split('-')
+        self.page = int(items[0])
+        self.order = int(items[1])
+        self.type = items[2]
+        self.period = items[3].split('_')
+        self.parts = items[4].split('+')
+
+
 class DataFile:
     def __init__(self):
         self.filename = None
