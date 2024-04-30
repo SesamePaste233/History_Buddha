@@ -107,6 +107,7 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
         raise PreventUpdate
 
     trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    initial_idx = input_idx
 
     if trigger_id == 'load-button':
         if input_idx in all_images and input_idx in all_ldmk_data:
@@ -165,6 +166,7 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
 )
 def update_debug_info(selected_index):
     return f"Selected Landmark Index: {selected_index}"
+
 
 @app.callback(
     Output('download-landmarks', 'data'),
