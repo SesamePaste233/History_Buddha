@@ -151,7 +151,7 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
         if curve_idx > 0:
             selected_index = int(point_data['text'])
         else:
-            if selected_index:
+            if selected_index is not None:
                 landmarks[selected_index] = (x, y)
                 fig['data'][1]['x'] = [p[0] for p in landmarks]
                 fig['data'][1]['y'] = [p[1] for p in landmarks]
