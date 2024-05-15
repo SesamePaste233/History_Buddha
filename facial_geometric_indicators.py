@@ -1,6 +1,5 @@
 import numpy as np
 import math 
-from scipy import stats
 from scipy.interpolate import splprep, splev
 
 class FacialGeometricIndicators:
@@ -134,24 +133,3 @@ class FacialGeometricIndicators:
         """
         return self.fgi_values if self.fgi_values else self.calculate_all()
     
-    # def calculate_fsa(self):
-    #     E = self.fgi_values['RightCheekWidth']
-    #     F = self.fgi_values['LeftCheekWidth']
-    #     G = self.fgi_values['RightChinWidth']
-    #     H = self.fgi_values['LeftChinWidth']
-    #     I = self.fgi_values['LeftEyebrowWidth']
-    #     J = self.fgi_values['RightEyebrowWidth']
-    #     K = self.fgi_values['LeftEyeWidth']
-    #     L = self.fgi_values['RightEyeWidth']
-    #     M = self.fgi_values['LeftMouthWidth']
-    #     N = self.fgi_values['RightMouthWidth']
-    #     O = self.fgi_values['LeftNoseWidth']
-    #     P = self.fgi_values['RightNoseWidth']
-
-    #     # Calculate FSA according to the formula provided
-    #     FSA = (abs(E/F - 1) + abs(G/H - 1) + abs(I/J - 1) + abs(K/L - 1) + abs(M/N - 1) + abs(O/P - 1)) / 6
-
-    #     # Add FSA to the fgi_values dictionary
-    #     self.fgi_values['FSA'] = FSA
-
-        return FSA
