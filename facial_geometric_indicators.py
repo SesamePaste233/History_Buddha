@@ -1,3 +1,8 @@
+import numpy as np
+import math 
+from scipy import stats
+from scipy.interpolate import splprep, splev
+
 class FacialGeometricIndicators:
     def __init__(self, landmarks):
         """
@@ -9,68 +14,118 @@ class FacialGeometricIndicators:
 
     def calculate_distance_x(self, idx):
 
-        point1 = self.landmarks[idx[0]-1][0]
-        point2 = self.landmarks[idx[1]-1][0]
-        return point1 - point2
+        point1 = self.landmarks[idx[0]][0]
+        point2 = self.landmarks[idx[1]][0]
+        return abs(point1 - point2)
     
     def calculate_distance_y(self, idx):
 
-        point1 = self.landmarks[idx[0]-1][1]
-        point2 = self.landmarks[idx[1]-1][1]
-        return point1 - point2
+        point1 = self.landmarks[idx[0]][1]
+        point2 = self.landmarks[idx[1]][1]
+        return abs(point1 - point2)
+    
+    def polygon_area(self, indices):
+        """Calculates the area of a polygon whose vertices are given by the indices list using the Shoelace formula."""
+        n = len(indices)
+        area = 0
+        for i in range(n):
+            x1, y1 = self.landmarks[indices[i]]
+            x2, y2 = self.landmarks[indices[(i + 1) % n]]  # Wrap around using modulo
+            area += x1 * y2 - y1 * x2
+        return abs(area) / 2
+    
+    def compute_curvature(self, points):
+
+        points = np.array([self.landmarks[idx] for idx in points])
+        tck, u = splprep(points.T, s=0)
+        der1 = splev(u, tck, der=1)  
+        der2 = splev(u, tck, der=2) 
+        curvature = np.abs(der1[0]*der2[1] - der1[1]*der2[0]) / np.power(der1[0]**2 + der1[1]**2, 1.5)
+        return curvature
+    
+    # def plot_curve(self, tck):
+    #     unew = np.linspace(0, 1, 100)
+    #     out = splev(unew, tck)
+    #     plt.figure()
+    #     plt.plot(out[0], out[1], 'b-', self.points[:, 0], self.points[:, 1], 'ro')
+    #     plt.show()
+
+    def angle_between_points(self, p1, p2, p3):
+        def vector(a, b):
+            return (b[0] - a[0], b[1] - a[1])
+
+        v1 = vector(p2, p1)
+        v2 = vector(p2, p3)
+
+        # Calculate the angle in radians between the two vectors
+        angle_rad = math.atan2(v2[1], v2[0]) - math.atan2(v1[1], v1[0])
+        angle_rad = abs(angle_rad)  # Absolute value to get the positive angle
+
+        # Normalize angle to [0, pi]
+        if angle_rad > math.pi:
+            angle_rad -= 2 * math.pi
+        elif angle_rad < -math.pi:
+            angle_rad += 2 * math.pi
+
+        return math.degrees(abs(angle_rad))
 
     def calculate_all(self):
         """
         Calculate all Facial Geometric Indicators based on the provided formulas.
         """
-        # Eye height (A)
-        self.fgi_values['EyeHeight'] = sum(self.calculate_distance_y(idx) for idx in [(42,38), (41,39), (47,45), (48,44)]) / 4
 
-        # Eyebrow to upper eyelid (B)
-        self.fgi_values['EyebrowToUpperEyelid'] = sum(self.calculate_distance_y(idx) for idx in [(38, 20), (40, 22), (45, 25), (43, 23)]) / 4
+        # # Left eyebrow width 
+        # self.fgi_values['LeftEyebrowWidth'] = self.calculate_distance_x((21, 17))
 
-        # Eye to nose bottom (C)
-        self.fgi_values['EyeToNoseBottom'] = sum(self.calculate_distance_y(idx) for idx in [(33, 40), (35, 41), (33, 43), (35, 48)]) / 4
+        # # Right eyebrow width 
+        # self.fgi_values['RightEyebrowWidth'] = self.calculate_distance_x((26, 22))
 
-        # Nose bottom to chin (D)
-        self.fgi_values['NoseBottomToChin'] = sum(self.calculate_distance_y(idx) for idx in [(7, 32), (11, 36)]) / 2
+        # Left eye width 
+        self.fgi_values['LeftEyeWidth'] = self.calculate_distance_x((39, 36))
 
-        # Right cheek width (E)
-        self.fgi_values['RightCheekWidth'] = self.calculate_distance_x((17, 9))
+        # Right eye width 
+        self.fgi_values['RightEyeWidth'] = self.calculate_distance_x((45, 42))
 
-        # Left cheek width (F)
-        self.fgi_values['LeftCheekWidth'] = self.calculate_distance_x((9, 1))
+        # Eye width
+        self.fgi_values['AvgEyeWidth'] = (self.fgi_values['LeftEyeWidth'] + self.fgi_values['RightEyeWidth'])/2
 
-        # Right chin width (G)
-        self.fgi_values['RightChinWidth'] = self.calculate_distance_x((11, 9))
+        # Left eye breadth
+        self.fgi_values['LeftEyeBreadth'] = (self.calculate_distance_y((37, 41)) + self.calculate_distance_y((38, 40)))/2
 
-        # Left chin width (H)
-        self.fgi_values['LeftChinWidth'] = self.calculate_distance_x((9, 7))
+        # Right eye breadth 
+        self.fgi_values['RightEyeBreadth'] = (self.calculate_distance_y((43, 47)) + self.calculate_distance_y((44,46)))/2
 
-        # Left eyebrow width (I)
-        self.fgi_values['LeftEyebrowWidth'] = self.calculate_distance_x((22, 18))
+        # Eye breath
+        self.fgi_values['AvgEyeBreadth'] = (self.fgi_values['LeftEyeBreadth'] + self.fgi_values['RightEyeBreadth'])/2
 
-        # Right eyebrow width (J)
-        self.fgi_values['RightEyebrowWidth'] = self.calculate_distance_x((27, 23))
+        # Mouth width
+        self.fgi_values['MouthWidth'] = self.calculate_distance_x((60, 64))
 
-        # Left eye width (K)
-        self.fgi_values['LeftEyeWidth'] = self.calculate_distance_x((40, 37))
+        # Upper mouth thickness
+        self.fgi_values['UpperMouthThickness'] = (self.calculate_distance_y((50,61)) + self.calculate_distance_y((52,63)))/2
 
-        # Right eye width (L)
-        self.fgi_values['RightEyeWidth'] = self.calculate_distance_x((46, 43))
+        # Lower mouth thickness
+        self.fgi_values['LowerMouthThickness'] = (self.calculate_distance_y((67, 58)) + self.calculate_distance_y((66,57)) + self.calculate_distance_y((65,56)))/3
 
-        # Left mouth width (M)
-        self.fgi_values['LeftMouthWidth'] = self.calculate_distance_x((52, 49))
+        # Mouth shape
+        self.fgi_values['MouthShape'] = (self.fgi_values['UpperMouthThickness'] + self.fgi_values['LowerMouthThickness'])/self.fgi_values['MouthWidth']
+        
+        # Ratio of mouth width to face width
+        LeftFaceWidth = (self.calculate_distance_x((1,48)) + self.calculate_distance_x((2,48)) + self.calculate_distance_x((3,48)) + self.calculate_distance_x((4,48)))/4
+        RightFaceWidth = (self.calculate_distance_x((12,54)) + self.calculate_distance_x((13,54)) + self.calculate_distance_x((14,54)) + self.calculate_distance_x((15,54)))/4
+        self.fgi_values['RmouthW2faceW'] = self.fgi_values['MouthWidth']/(LeftFaceWidth+RightFaceWidth+self.fgi_values['MouthWidth'])
 
-        # Right mouth width (N)
-        self.fgi_values['RightMouthWidth'] = self.calculate_distance_x((55, 52))
+        # Ratio of facial features area to face area
+        self.fgi_values['Rffa2fa'] = (self.polygon_area((36, 37, 38, 43, 44, 45, 35, 31)) + self.polygon_area((31, 35, 54, 57, 48))) / self.polygon_area(list(range(0,17))+list(range(26,16,-1)))
 
-        # Left nose width (O)
-        self.fgi_values['LeftNoseWidth'] = self.calculate_distance_x((34, 32))
+        # Smile arc
+        self.fgi_values['SmileArc'] = np.mean(self.compute_curvature([60, 59, 58, 57, 56, 55, 64]))
 
-        # Right nose width (P)
-        self.fgi_values['RightNoseWidth'] = self.calculate_distance_x((36, 34))
+        # Jaw line angle
+        self.fgi_values['JawLineAngle'] = (self.angle_between_points(self.landmarks[0], self.landmarks[4], self.landmarks[8]) + self.angle_between_points(self.landmarks[16], self.landmarks[12], self.landmarks[8]))/2
 
+        # Jaw curvature
+        self.fgi_values['JawCurvature'] = (np.max(self.compute_curvature(list(range(2,8)))) + np.max(self.compute_curvature(list(range(9,15)))))/2
         return self.fgi_values
 
     def get_fgi_values(self):
@@ -79,24 +134,24 @@ class FacialGeometricIndicators:
         """
         return self.fgi_values if self.fgi_values else self.calculate_all()
     
-    def calculate_fsa(self):
-        E = self.fgi_values['RightCheekWidth']
-        F = self.fgi_values['LeftCheekWidth']
-        G = self.fgi_values['RightChinWidth']
-        H = self.fgi_values['LeftChinWidth']
-        I = self.fgi_values['LeftEyebrowWidth']
-        J = self.fgi_values['RightEyebrowWidth']
-        K = self.fgi_values['LeftEyeWidth']
-        L = self.fgi_values['RightEyeWidth']
-        M = self.fgi_values['LeftMouthWidth']
-        N = self.fgi_values['RightMouthWidth']
-        O = self.fgi_values['LeftNoseWidth']
-        P = self.fgi_values['RightNoseWidth']
+    # def calculate_fsa(self):
+    #     E = self.fgi_values['RightCheekWidth']
+    #     F = self.fgi_values['LeftCheekWidth']
+    #     G = self.fgi_values['RightChinWidth']
+    #     H = self.fgi_values['LeftChinWidth']
+    #     I = self.fgi_values['LeftEyebrowWidth']
+    #     J = self.fgi_values['RightEyebrowWidth']
+    #     K = self.fgi_values['LeftEyeWidth']
+    #     L = self.fgi_values['RightEyeWidth']
+    #     M = self.fgi_values['LeftMouthWidth']
+    #     N = self.fgi_values['RightMouthWidth']
+    #     O = self.fgi_values['LeftNoseWidth']
+    #     P = self.fgi_values['RightNoseWidth']
 
-        # Calculate FSA according to the formula provided
-        FSA = (abs(E/F - 1) + abs(G/H - 1) + abs(I/J - 1) + abs(K/L - 1) + abs(M/N - 1) + abs(O/P - 1)) / 6
+    #     # Calculate FSA according to the formula provided
+    #     FSA = (abs(E/F - 1) + abs(G/H - 1) + abs(I/J - 1) + abs(K/L - 1) + abs(M/N - 1) + abs(O/P - 1)) / 6
 
-        # Add FSA to the fgi_values dictionary
-        self.fgi_values['FSA'] = FSA
+    #     # Add FSA to the fgi_values dictionary
+    #     self.fgi_values['FSA'] = FSA
 
         return FSA

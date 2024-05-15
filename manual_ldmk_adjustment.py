@@ -14,7 +14,7 @@ app = dash.Dash(__name__)
 all_ldmk_data = {}
 all_images = {}
 
-for file_path in glob.glob(f'extracted/ortho_landmarks/*.json'):
+for file_path in glob.glob(f'extracted/updated_landmarks/*.json'):
     file_name = os.path.basename(file_path)
     key1 = "-".join(file_name.split("-")[:2])
     key2 = file_name.split("-")[-1].split("_")[1]
@@ -30,6 +30,14 @@ for file_path in glob.glob(f'extracted/orthogonalized/*.png'):
     key2 = file_name.split("-")[-1].split("_")[1]
     key = key1 + "-" + key2
     all_images[key] = "extracted/orthogonalized/"+file_name
+
+def index_generator(keys):
+    while True:
+        for key in keys:
+            yield key
+
+image_keys = sorted(all_ldmk_data.keys())
+image_index_gen = index_generator(image_keys)
 
 # Load initial data
 # idx = "13-11"
@@ -49,36 +57,37 @@ app.layout = html.Div([
                     yaxis={'showgrid': False, 'zeroline': False, 'showticklabels': False, 'scaleanchor': "x", 'scaleratio': 1},
                     margin={'l': 0, 'r': 0, 't': 0, 'b': 0},
                     height=800,
-                    # width='60vh',  
-                    clickmode='event+select'
                 )
             },
             style={'height': '90vh', 'width': '100%'}
         ),
-        html.Div([  # Side panel for input and button
+        html.Div([
             dcc.Input(id='input-index', type='text', placeholder='Enter Image Index',
                       style={'margin': '5px', 'width': '250px', 'height': '40px'}),  
             html.Button('Load Image', id='load-button',
-                        style={'margin': '5px', 'width': '150px', 'height': '45px'}),  
+                        style={'margin': '5px', 'width': '150px', 'height': '45px'}),
+            html.Button('Next Image', id='next-button',
+                        style={'margin': '5px', 'width': '150px', 'height': '45px'}),
             html.Button('Save Updated Landmarks', id='save-updated-button',  
-                style={'margin': '5px', 'width': '250px', 'height': '45px'}),
+                        style={'margin': '5px', 'width': '250px', 'height': '45px'}),
+            html.Div(id='image-name-display', style={'margin': '5px', 'font-size': '20px'})
         ], style={
             'display': 'flex',
-            'flexDirection': 'column',  
+            'flexDirection': 'column',
             'justifyContent': 'center',
             'alignItems': 'left',
-            'width': '50%',  
+            'width': '50%',
             'height': '90vh'
         }),
     ], style={
         'display': 'flex',
         'alignItems': 'stretch',
-        'width': '100%'  # Ensures the outer div takes full width of its parent
+        'width': '100%'
     }),
     html.Div(id='debug-info', style={
-        'position': 'absolute',  # Absolute position
-        'top': '10px',  
-        'right': '10px',  
+        'position': 'absolute',
+        'top': '10px',
+        'right': '10px',
         'background': 'white',
         'padding': '10px',
         'border': '1px solid #ccc',
@@ -92,22 +101,24 @@ app.layout = html.Div([
 @app.callback(
     [Output('image-graph', 'figure'),
      Output('landmarks-store', 'data'),
+     Output('image-name-display', 'children'),
      Output('selected-landmark-index', 'data')],
     [Input('load-button', 'n_clicks'),
+     Input('next-button', 'n_clicks'),
      Input('image-graph', 'clickData')],
     [State('input-index', 'value'),
      State('landmarks-store', 'data'),
      State('selected-landmark-index', 'data'),
      State('image-graph', 'figure')]
 )
-def update_content(load_clicks, clickData, input_idx, landmarks, selected_index, fig):
+def update_content(load_clicks, next_clicks, clickData, input_idx, landmarks, selected_index, fig):
     ctx = dash.callback_context
 
     if not ctx.triggered:
         raise PreventUpdate
 
     trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
-    initial_idx = input_idx
+    # initial_idx = input_idx
 
     if trigger_id == 'load-button':
         if input_idx in all_images and input_idx in all_ldmk_data:
@@ -139,7 +150,7 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
                     clickmode='event+select'
                 )
             }
-            return fig, landmarks, dash.no_update  # Reset selected index only if needed
+            return fig, landmarks, f"Image Name: {name}", dash.no_update  # Reset selected index only if needed
         else:
             raise PreventUpdate
 
@@ -156,9 +167,42 @@ def update_content(load_clicks, clickData, input_idx, landmarks, selected_index,
                 fig['data'][1]['x'] = [p[0] for p in landmarks]
                 fig['data'][1]['y'] = [p[1] for p in landmarks]
             selected_index = None
-        return fig, landmarks, selected_index
+        return fig, landmarks, '', selected_index
+    
+    elif trigger_id == 'next-button':
+        idx = next(image_index_gen)
+        image_path = all_images[idx]
+        name = os.path.basename(image_path).split('.')[0]
+        image = cv2.imread(image_path)
+        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        landmarks = all_ldmk_data[idx]
 
-    raise PreventUpdate
+        fig = {
+            'data': [
+                go.Image(z=image_rgb),
+                go.Scatter(
+                    x=[p[0] for p in landmarks],
+                    y=[p[1] for p in landmarks],
+                    mode='markers+text',
+                    marker=dict(color='red', size=12),
+                    text=[str(i) for i in range(len(landmarks))],
+                    textposition="top center",
+                    name='Landmarks'
+                )
+            ],
+            'layout': go.Layout(
+                xaxis={'showgrid': False, 'zeroline': False, 'showticklabels': False},
+                yaxis={'showgrid': False, 'zeroline': False, 'showticklabels': False, 'scaleanchor': "x", 'scaleratio': 1},
+                margin={'l': 0, 'r': 0, 't': 0, 'b': 0},
+                height=800,
+                width=800,
+                clickmode='event+select'
+            )
+        }
+        return fig, landmarks, f"Image Name: {name}", dash.no_update  # Reset selected index only if needed
+    else:
+        raise PreventUpdate
+
 
 @app.callback(
     Output('debug-info', 'children'),
