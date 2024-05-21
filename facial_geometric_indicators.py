@@ -101,13 +101,13 @@ class FacialGeometricIndicators:
         self.fgi_values['MouthWidth'] = self.calculate_distance_x((60, 64))
 
         # Upper mouth thickness
-        self.fgi_values['UpperMouthThickness'] = (self.calculate_distance_y((50,61)) + self.calculate_distance_y((52,63)))/2
+        self.fgi_values['UpperLipThickness'] = (self.calculate_distance_y((50,61)) + self.calculate_distance_y((52,63)))/2
 
         # Lower mouth thickness
-        self.fgi_values['LowerMouthThickness'] = (self.calculate_distance_y((67, 58)) + self.calculate_distance_y((66,57)) + self.calculate_distance_y((65,56)))/3
+        self.fgi_values['LowerLipThickness'] = (self.calculate_distance_y((67, 58)) + self.calculate_distance_y((66,57)) + self.calculate_distance_y((65,56)))/3
 
         # Mouth shape
-        self.fgi_values['MouthShape'] = (self.fgi_values['UpperMouthThickness'] + self.fgi_values['LowerMouthThickness'])/self.fgi_values['MouthWidth']
+        self.fgi_values['MouthShape'] = (self.fgi_values['UpperLipThickness'] + self.fgi_values['LowerLipThickness'])/self.fgi_values['MouthWidth']
         
         # Ratio of mouth width to face width
         LeftFaceWidth = (self.calculate_distance_x((1,48)) + self.calculate_distance_x((2,48)) + self.calculate_distance_x((3,48)) + self.calculate_distance_x((4,48)))/4
@@ -115,7 +115,7 @@ class FacialGeometricIndicators:
         self.fgi_values['RmouthW2faceW'] = self.fgi_values['MouthWidth']/(LeftFaceWidth+RightFaceWidth+self.fgi_values['MouthWidth'])
 
         # Ratio of facial features area to face area
-        self.fgi_values['Rffa2fa'] = (self.polygon_area((36, 37, 38, 43, 44, 45, 35, 31)) + self.polygon_area((31, 35, 54, 57, 48))) / self.polygon_area(list(range(0,17))+list(range(26,16,-1)))
+        self.fgi_values['RFeaturesA2WholeA'] = (self.polygon_area((36, 37, 38, 43, 44, 45, 35, 31)) + self.polygon_area((31, 35, 54, 57, 48))) / self.polygon_area(list(range(0,17))+list(range(26,16,-1)))
 
         # Smile arc
         self.fgi_values['SmileArc'] = np.mean(self.compute_curvature([60, 59, 58, 57, 56, 55, 64]))
