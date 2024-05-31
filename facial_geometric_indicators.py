@@ -85,7 +85,7 @@ class FacialGeometricIndicators:
         # Right eye width 
         self.fgi_values['RightEyeWidth'] = self.calculate_distance_x((45, 42))
 
-        # Eye width
+        # Eye widt
         self.fgi_values['AvgEyeWidth'] = (self.fgi_values['LeftEyeWidth'] + self.fgi_values['RightEyeWidth'])/2
 
         # Left eye breadth
@@ -114,8 +114,8 @@ class FacialGeometricIndicators:
         RightFaceWidth = (self.calculate_distance_x((12,54)) + self.calculate_distance_x((13,54)) + self.calculate_distance_x((14,54)) + self.calculate_distance_x((15,54)))/4
         self.fgi_values['RmouthW2faceW'] = self.fgi_values['MouthWidth']/(LeftFaceWidth+RightFaceWidth+self.fgi_values['MouthWidth'])
 
-        # Ratio of facial features area to face area
-        self.fgi_values['RFeaturesA2WholeA'] = (self.polygon_area((36, 37, 38, 43, 44, 45, 35, 31)) + self.polygon_area((31, 35, 54, 57, 48))) / self.polygon_area(list(range(0,17))+list(range(26,16,-1)))
+        # Ratio of facial features area to face area((36, 37, 38, 43, 44, 45, 35, 31)) + se
+        self.fgi_values['RFeaturesA2WholeA'] = (self.polygon_area((31, 35, 54, 57, 48))) / self.polygon_area(list(range(0,17))+list(range(26,16,-1)))
 
         # Smile arc
         self.fgi_values['SmileArc'] = np.mean(self.compute_curvature([60, 59, 58, 57, 56, 55, 64]))
